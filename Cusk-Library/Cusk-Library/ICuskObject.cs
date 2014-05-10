@@ -9,6 +9,6 @@ namespace Cusk_Library
     {
 
         //TODO: In future actually return XML or whatever for saving
-        object Serialize();
+        string Serialize();
     }
 }

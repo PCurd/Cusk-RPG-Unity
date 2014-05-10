@@ -23,11 +23,13 @@ namespace Cusk_Library.Tests
         {
             var gameStateMock = new Mock<IGameState>();
             if (GoodGameState)
-                gameStateMock.Setup(m => m.Serialize()).Returns(new object());
+                gameStateMock.Setup(m => m.Serialize()).Returns("something");
             else
                 gameStateMock.Setup(m => m.Serialize()).Throws(new Exception());
 
             var gameStateCheckerMock = new Mock<IGameStateChecker>();
+            gameStateCheckerMock.Setup(m => m.Check(It.IsAny<IGameState>())).Returns(GoodGameState);
+
             return new GameStateAndChecker() { gameState = gameStateMock.Object, gameStateChecker= gameStateCheckerMock.Object };
          }
 

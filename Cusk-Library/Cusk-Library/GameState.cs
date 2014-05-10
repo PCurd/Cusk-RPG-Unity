@@ -16,11 +16,11 @@ namespace Cusk_Library
             InGoodForm = false;
         }
 
-        public object Serialize()
+        public string Serialize()
         {
             if (gameStateChecker.Check(this))
                 return this.ToString();
-            else throw new Exception("Object GameState not in good form");
+            else throw new ArgumentException("Object GameState not in good form");
         }
 
         private bool CheckForm()

@@ -15,11 +15,13 @@ namespace Cusk_Library.Tests
         {
             var gameStateMock = new Mock<IGameState>();
             if (GoodGameState)
-                gameStateMock.Setup(m => m.Serialize()).Returns(new object());
+                gameStateMock.Setup(m => m.Serialize()).Returns("something");
             else
                 gameStateMock.Setup(m => m.Serialize()).Throws(new Exception());
 
             var gameStateCheckerMock = new Mock<IGameStateChecker>();
+            gameStateCheckerMock.Setup(m => m.Check(It.IsAny<IGameState>())).Returns(GoodGameState);
+
             return new GameStateAndChecker() { gameState = gameStateMock.Object, gameStateChecker = gameStateCheckerMock.Object };
         }
 
@@ -30,9 +32,23 @@ namespace Cusk_Library.Tests
         }
 
         [TestMethod()]
-        public void SerializeTest()
+        public void Serialize_Returns_True_For_Good_GameState()
         {
-            Assert.Fail();
+            var createMockGameState = CreateMockGameState(true);
+            var gameStateChecker = createMockGameState.gameStateChecker;
+            var gameState = new GameState(gameStateChecker);
+            var result = gameState.Serialize();
+            Assert.IsInstanceOfType(result, typeof(string));
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException),AllowDerivedTypes=false)]
+        public void Serialize_Returns_False_For_Bad_GameState()
+        {
+            var createMockGameState = CreateMockGameState(false);
+            var gameStateChecker = createMockGameState.gameStateChecker;
+            var gameState = new GameState(gameStateChecker);
+            var result = gameState.Serialize();
         }
     }
 }
