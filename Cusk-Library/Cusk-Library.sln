@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cusk-Library", "Cusk-Library\Cusk-Library.csproj", "{13FB8C87-697D-416A-9C31-F0FEF999EFAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cusk-LibraryTests1", "Cusk-LibraryTests1\Cusk-LibraryTests1.csproj", "{8EA4D821-7FB1-4A64-82DA-3C7B3A2C82C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{13FB8C87-697D-416A-9C31-F0FEF999EFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13FB8C87-697D-416A-9C31-F0FEF999EFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13FB8C87-697D-416A-9C31-F0FEF999EFAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EA4D821-7FB1-4A64-82DA-3C7B3A2C82C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EA4D821-7FB1-4A64-82DA-3C7B3A2C82C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EA4D821-7FB1-4A64-82DA-3C7B3A2C82C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EA4D821-7FB1-4A64-82DA-3C7B3A2C82C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
