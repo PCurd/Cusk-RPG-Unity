@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cusk_Library
 {
-    public class Save
+    public class Save : Cusk_Library.ISave
     {
         public Save()
         {
@@ -14,10 +14,19 @@ namespace Cusk_Library
         }
 
 
-
-        public bool Serialize(GameState gameState)
+        //In future needs to store serialized output
+        public bool Serialize(ICuskObject cuskObject)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                var serialized = cuskObject.Serialize();
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
