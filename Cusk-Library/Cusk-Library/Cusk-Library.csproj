@@ -39,12 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ICuskEntity.cs" />
+    <Compile Include="Entities\ILivingThing.cs" />
+    <Compile Include="Entities\Player.cs" />
     <Compile Include="ICuskObject.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="GameStateChecker.cs" />
     <Compile Include="IGameState.cs" />
     <Compile Include="IGameStateChecker.cs" />
     <Compile Include="ISave.cs" />
+    <Compile Include="Entities\LivingThing.cs" />
     <Compile Include="Save.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

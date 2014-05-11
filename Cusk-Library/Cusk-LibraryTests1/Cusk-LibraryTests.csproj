@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Entities\LivingThingTests.cs" />
     <Compile Include="GameStateCheckerTests.cs" />
     <Compile Include="GameStateTests.cs" />
     <Compile Include="SaveTests.cs" />
