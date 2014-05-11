@@ -26,6 +26,12 @@ namespace Cusk_Library.Engine.Tests
             mock.Setup(m => m.CurrentX).Returns(0);
             mock.Setup(m => m.CurrentY).Returns(0);
 
+            var mockNotBlocking = new Mock<ICuskEntity>();
+            mockNotBlocking.Setup(m => m.CurrentX).Returns(2);
+            mockNotBlocking.Setup(m => m.CurrentY).Returns(1);
+
+            cuskEngine.cuskObjectDatabase.AddToDatabase(mockNotBlocking.Object);
+
             var result = cuskEngine.CanMoveTo(1, 1, mock.Object);
             Assert.IsTrue(result);
         }
@@ -36,6 +42,13 @@ namespace Cusk_Library.Engine.Tests
             var mock = new Mock<ICuskEntity>();
             mock.Setup(m => m.CurrentX).Returns(0);
             mock.Setup(m => m.CurrentY).Returns(0);
+
+            var mockBlocking = new Mock<ICuskEntity>();
+            mockBlocking.Setup(m => m.CurrentX).Returns(1);
+            mockBlocking.Setup(m => m.CurrentY).Returns(1);
+
+            cuskEngine.cuskObjectDatabase.AddToDatabase(mockBlocking.Object);
+
 
             var result = cuskEngine.CanMoveTo(1, 1, mock.Object);
             Assert.IsFalse(result);

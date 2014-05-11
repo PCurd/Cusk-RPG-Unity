@@ -58,8 +58,13 @@ namespace Cusk_Library.Entities
 
         public bool MoveTo(int NewX, int NewY)
         {
-
-            throw new NotImplementedException();
+            if (cuskEngine.CanMoveTo(NewX, NewY, this))
+            {
+                CurrentX = NewX;
+                CurrentY = NewY;
+                return true;
+            }
+            else return false;
         }
 
 

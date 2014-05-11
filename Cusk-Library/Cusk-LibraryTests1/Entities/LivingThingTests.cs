@@ -57,9 +57,33 @@ namespace Cusk_Library.Entities.Tests
         }
 
         [TestMethod()]
-        public void MoveToTest()
+        public void MoveTo_Returns_True_When_Object_Moves()
         {
-            Assert.Fail();
+            var mock = new Mock<ICuskEngine>();
+            mock.Setup(m=>m.CanMoveTo(1,1,It.IsAny<ICuskEntity>())).Returns(true);
+
+            var thing = new LivingThing(1,1,1,1,1,1,1,mock.Object);
+            var result = thing.MoveTo(1,1);
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod()]
+        public void MoveTo_Returns_False_When_Object_Does_Not_Move()
+        {
+            var thing = new LivingThing(1, 1, 1, 1, 1, 1, 1, new Mock<ICuskEngine>().Object);
+            var result = thing.MoveTo(0, 0);
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod()]
+        public void MoveTo_Returns_False_When_Object_Is_Blocked()
+        {
+            var mock = new Mock<ICuskEngine>();
+            mock.Setup(m => m.CanMoveTo(1, 1, It.IsAny<ICuskEntity>())).Returns(false);
+
+            var thing = new LivingThing(1, 1, 1, 1, 1, 1, 1, mock.Object);
+            var result = thing.MoveTo(1, 1);
+            Assert.IsFalse(result);
         }
     }
 }

@@ -10,6 +10,10 @@ namespace Cusk_Library.Engine
     {
         public List<ICuskEntity> CuskEntities { get; private set; }
 
+        public CuskEntityDatabase()
+        {
+            CuskEntities = new List<ICuskEntity>();
+        }
         public bool AddToDatabase(ICuskEntity cuskEntity)
         {
             if (CuskEntities.Contains(cuskEntity))
@@ -20,6 +24,17 @@ namespace Cusk_Library.Engine
                 return true;
             }
 
+        }
+        
+        public ICuskEntity GetEntityAtLoc(int LocX, int LocY)
+        {
+            var entity = CuskEntities.First(c => c.CurrentX == LocX && c.CurrentY == LocY);
+            return entity;
+        }
+
+        public bool IsEntityAtLoc(int LocX, int LocY)
+        {
+            return CuskEntities.Any(c => c.CurrentX == LocX && c.CurrentY == LocY);
         }
 
         public string Serialize()

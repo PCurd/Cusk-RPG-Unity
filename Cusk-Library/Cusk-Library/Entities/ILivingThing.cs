@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cusk_Library.Entities
 {
-    interface ILivingThing
+    public interface ILivingThing
     {
         int HP { get; }
         int MaxHP { get; }

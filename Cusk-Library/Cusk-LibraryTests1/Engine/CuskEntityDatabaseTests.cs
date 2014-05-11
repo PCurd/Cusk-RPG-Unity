@@ -12,16 +12,25 @@ namespace Cusk_Library.Engine.Tests
     [TestClass()]
     public class CuskEntityDatabaseTests
     {
-        private CuskEntityDatabase cuskEntityDatabase;
+        private ICuskEntityDatabase cuskEntityDatabase;
      
-        private ICuskEntity CreateEntity()
+        private ICuskEntity CreateEntity(int CurrentX = 0, int CurrentY = 0)
         {
-            return new LivingThing(1,1,1,1,1,1,1,new Mock<ICuskEngine>().Object);
+            var mock = new Mock<ICuskEntity>();
+            mock.Setup(m => m.CurrentX).Returns(CurrentX);
+            mock.Setup(m => m.CurrentY).Returns(CurrentY);
+            return mock.Object;
         }
+     
+        private ICuskEntityDatabase CreateCuskEntityDatabase()
+        {
+            return new CuskEntityDatabase();
+        }
+
         [TestInitialize()]
         public void Initialize()
         {
-            cuskEntityDatabase = new CuskEntityDatabase();
+            cuskEntityDatabase = CreateCuskEntityDatabase();
         }
         [TestMethod()]
         public void AddToDatabase_Returns_True_For_New_Entity()
@@ -32,15 +41,56 @@ namespace Cusk_Library.Engine.Tests
         [TestMethod()]
         public void AddToDatabase_Returns_False_For_Existing_Entity()
         {
+            var localCuskEntityDatabase = CreateCuskEntityDatabase();
             var cuskEntity = CreateEntity();
-            cuskEntityDatabase.AddToDatabase(cuskEntity);
-            Assert.IsTrue(cuskEntityDatabase.AddToDatabase(cuskEntity));
+            localCuskEntityDatabase.AddToDatabase(cuskEntity);
+            Assert.IsFalse(localCuskEntityDatabase.AddToDatabase(cuskEntity));
         }
 
         [TestMethod()]
         public void SerializeTest()
         {
             Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void GetEntityAtLoc_Returns_Correct_Entity_If_One_Matches()
+        {
+            var localCuskEntityDatabase = CreateCuskEntityDatabase();
+            var cuskEntity = CreateEntity(5, 5);
+            localCuskEntityDatabase.AddToDatabase(cuskEntity);
+            var result = localCuskEntityDatabase.GetEntityAtLoc(5, 5);
+            Assert.AreEqual(cuskEntity, result);
+        }
+
+        [TestMethod()]
+        public void GetEntityAtLoc_Returns_Correct_Entity_If_One_Matches_At_Origin()
+        {
+            var localCuskEntityDatabase = CreateCuskEntityDatabase();
+            var cuskEntity = CreateEntity(0, 0);
+            localCuskEntityDatabase.AddToDatabase(cuskEntity);
+            var result = localCuskEntityDatabase.GetEntityAtLoc(0, 0);
+            Assert.AreEqual(cuskEntity, result);
+        }
+
+        [TestMethod()]
+        public void IsEntityAtLoc_Returns_True_If_One_Matches()
+        {
+            var localCuskEntityDatabase = CreateCuskEntityDatabase();
+            var cuskEntity = CreateEntity(5, 5);
+            localCuskEntityDatabase.AddToDatabase(cuskEntity);
+            var result = localCuskEntityDatabase.IsEntityAtLoc(5, 5);
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod()]
+        public void IsEntityAtLoc_Returns_False_If_None_Match()
+        {
+            var localCuskEntityDatabase = CreateCuskEntityDatabase();
+            var cuskEntity = CreateEntity(5, 5);
+            localCuskEntityDatabase.AddToDatabase(cuskEntity);
+            var result = localCuskEntityDatabase.IsEntityAtLoc(4, 5);
+            Assert.IsFalse(result);
         }
 
     }
