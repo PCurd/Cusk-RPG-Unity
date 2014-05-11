@@ -5,11 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using Cusk_Library.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Cusk_Library.Engine;
+using Moq;
 namespace Cusk_Library.Entities.Tests
 {
     [TestClass()]
     public class LivingThingTests
     {
+        private CuskEngine cuskEngine;
+        private CuskEngine CreateMockCuskEngine()
+        {
+            var mock = new Mock<CuskEngine>();
+
+            return mock.Object;
+        }
+        [TestInitialize()]
+        private void Initialize()
+        {
+            cuskEngine = CreateMockCuskEngine();
+        }
+
         [TestMethod()]
         public void LivingThing_Stores_Values_When_Created()
         {
@@ -20,7 +35,7 @@ namespace Cusk_Library.Entities.Tests
             int Dexterity = 14;
             int Consitution = 15;
             int Wisdom = 16;
-            var thing = new LivingThing(MaxHP, MaxMP, Strength, Intelligence, Dexterity, Consitution, Wisdom);
+            var thing = new LivingThing(MaxHP, MaxMP, Strength, Intelligence, Dexterity, Consitution, Wisdom, cuskEngine);
 
             Assert.AreEqual(MaxHP, thing.HP);
             Assert.AreEqual(MaxMP, thing.MP);
@@ -37,6 +52,12 @@ namespace Cusk_Library.Entities.Tests
 
         [TestMethod()]
         public void SerializeTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void MoveToTest()
         {
             Assert.Fail();
         }
