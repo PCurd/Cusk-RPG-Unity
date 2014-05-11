@@ -9,7 +9,7 @@ namespace Cusk_Library.Entities
 {
     public class LivingThing : ICuskObject, ICuskEntity, ILivingThing
     {
-        private CuskEngine cuskEngine;
+        private ICuskEngine cuskEngine;
 
         public int HP {get;private set;}
         public int MaxHP { get; private set; }
@@ -31,7 +31,7 @@ namespace Cusk_Library.Entities
         public int CurrentX { get; private set; }
         public int CurrentY { get; private set; }
 
-        public LivingThing(int MaxHP, int MaxMP, int Strength, int Intelligence, int Dexterity, int Constitution, int Wisdom, CuskEngine cuskEngine)
+        public LivingThing(int MaxHP, int MaxMP, int Strength, int Intelligence, int Dexterity, int Constitution, int Wisdom, ICuskEngine cuskEngine)
         {
             this.cuskEngine = cuskEngine; 
             this.MaxHP = MaxHP;

@@ -40,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Engine\CuskEngine.cs" />
+    <Compile Include="Engine\CuskEntityDatabase.cs" />
+    <Compile Include="Engine\ICuskEngine.cs" />
+    <Compile Include="Engine\ICuskEntityDatabase.cs" />
     <Compile Include="Entities\ICuskEntity.cs" />
     <Compile Include="Entities\ILivingThing.cs" />
     <Compile Include="Entities\Player.cs" />

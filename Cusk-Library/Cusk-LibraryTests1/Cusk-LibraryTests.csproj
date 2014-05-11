@@ -53,6 +53,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Engine\CuskEngineTests.cs" />
+    <Compile Include="Engine\CuskEntityDatabaseTests.cs" />
     <Compile Include="Entities\LivingThingTests.cs" />
     <Compile Include="GameStateCheckerTests.cs" />
     <Compile Include="GameStateTests.cs" />
