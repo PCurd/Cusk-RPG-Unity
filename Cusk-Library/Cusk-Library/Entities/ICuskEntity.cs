@@ -10,5 +10,7 @@ namespace Cusk_Library.Entities
     {
         int CurrentX { get; }
         int CurrentY { get; }
+
+        void DoMoves();
     }
 }

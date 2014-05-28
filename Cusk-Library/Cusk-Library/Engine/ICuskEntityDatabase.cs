@@ -9,5 +9,7 @@ namespace Cusk_Library.Engine
         ICuskEntity GetEntityAtLoc(int LocX, int LocY);
         bool IsEntityAtLoc(int LocX, int LocY);
         bool AddToDatabase(ICuskEntity cuskEntity);
+
+        void ForEachEntity(Action<ICuskEntity> ActionToPerform);
     }
 }

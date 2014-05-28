@@ -67,6 +67,11 @@ namespace Cusk_Library.Entities
             else return false;
         }
 
+        public void DoMoves()
+        {
+            MoveTo(CurrentX + 1, CurrentY);
+        }
+
 
     }
 }

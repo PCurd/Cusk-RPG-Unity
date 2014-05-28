@@ -16,7 +16,7 @@ namespace Cusk_Library.Engine.Tests
         [TestInitialize()]
         public void Initialize()
         {
-            cuskEngine = new CuskEngine(new CuskEntityDatabase());
+            cuskEngine = new CuskEngine(new CuskEntityDatabase(), new TimeSpan(50000)); //Very small ticks for testing - 5ms
         }
 
         [TestMethod()]
@@ -52,6 +52,24 @@ namespace Cusk_Library.Engine.Tests
 
             var result = cuskEngine.CanMoveTo(1, 1, mock.Object);
             Assert.IsFalse(result);
+        }
+
+        [TestMethod()]
+        public void RunTickTest()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Tick length is {0}{1}", cuskEngine.TickMSLength, Environment.NewLine);
+            sb.AppendFormat("Time is {0}{1}", DateTime.UtcNow, Environment.NewLine);
+            cuskEngine.RunTick();
+            sb.AppendFormat("Tick length is {0}{1}", cuskEngine.TickMSLength, Environment.NewLine);
+            sb.AppendFormat("Time is {0}{1}", DateTime.UtcNow, Environment.NewLine);
+            cuskEngine.RunTick();
+            sb.AppendFormat("Tick length is {0}{1}", cuskEngine.TickMSLength, Environment.NewLine);
+            sb.AppendFormat("Time is {0}{1}", DateTime.UtcNow, Environment.NewLine);
+            cuskEngine.RunTick();
+            sb.AppendFormat("Tick length is {0}{1}", cuskEngine.TickMSLength, Environment.NewLine);
+            sb.AppendFormat("Time is {0}{1}", DateTime.UtcNow, Environment.NewLine);
+            Assert.Inconclusive(sb.ToString());
         }
     }
 }

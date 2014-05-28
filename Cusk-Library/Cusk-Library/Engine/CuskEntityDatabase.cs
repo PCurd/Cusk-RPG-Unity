@@ -41,5 +41,11 @@ namespace Cusk_Library.Engine
         {
             return this.ToString();
         }
+
+        public void ForEachEntity(Action<ICuskEntity> ActionToPerform)
+        {
+            CuskEntities.ForEach(x=>ActionToPerform(x));
+
+        }
     }
 }

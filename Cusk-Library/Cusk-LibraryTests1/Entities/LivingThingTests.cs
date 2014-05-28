@@ -59,12 +59,27 @@ namespace Cusk_Library.Entities.Tests
         [TestMethod()]
         public void MoveTo_Returns_True_When_Object_Moves()
         {
-            var mock = new Mock<ICuskEngine>();
-            mock.Setup(m=>m.CanMoveTo(1,1,It.IsAny<ICuskEntity>())).Returns(true);
-
-            var thing = new LivingThing(1,1,1,1,1,1,1,mock.Object);
+            var thing = CreateLivingThingThatCanMove();
             var result = thing.MoveTo(1,1);
             Assert.IsTrue(result);
+        }
+
+        private static LivingThing CreateLivingThingThatCanMove()
+        {
+            var mock = new Mock<ICuskEngine>();
+            mock.Setup(m => m.CanMoveTo(1, 1, It.IsAny<ICuskEntity>())).Returns(true);
+
+            var thing = new LivingThing(1, 1, 1, 1, 1, 1, 1, mock.Object);
+            return thing;
+        }
+
+        private static LivingThing CreateLivingThingThatCanMoveAnywhere()
+        {
+            var mock = new Mock<ICuskEngine>();
+            mock.Setup(m => m.CanMoveTo(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<ICuskEntity>())).Returns(true);
+
+            var thing = new LivingThing(1, 1, 1, 1, 1, 1, 1, mock.Object);
+            return thing;
         }
 
         [TestMethod()]
@@ -84,6 +99,15 @@ namespace Cusk_Library.Entities.Tests
             var thing = new LivingThing(1, 1, 1, 1, 1, 1, 1, mock.Object);
             var result = thing.MoveTo(1, 1);
             Assert.IsFalse(result);
+        }
+
+        [TestMethod()]
+        public void DoMovesTest()
+        {
+            var thing = CreateLivingThingThatCanMoveAnywhere();
+            var locX = thing.CurrentX;
+            thing.DoMoves();
+            Assert.IsTrue(thing.CurrentX>locX);
         }
     }
 }
