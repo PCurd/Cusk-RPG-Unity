@@ -58,7 +58,7 @@ namespace Cusk_Library.Entities
 
         public bool MoveTo(int NewX, int NewY)
         {
-            if (cuskEngine.CanMoveTo(NewX, NewY, this))
+            if (cuskEngine.EntityCanMoveTo(NewX, NewY, this))
             {
                 CurrentX = NewX;
                 CurrentY = NewY;
@@ -67,7 +67,7 @@ namespace Cusk_Library.Entities
             else return false;
         }
 
-        //**RMOVE Unnecessary function added for testing
+        //**REMOVE Unnecessary function added for testing
         public void DoMoves()
         {
             MoveTo(CurrentX + 1, CurrentY);

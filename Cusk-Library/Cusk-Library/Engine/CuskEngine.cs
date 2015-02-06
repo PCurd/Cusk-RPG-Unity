@@ -34,7 +34,7 @@ namespace Cusk_Library.Engine
             this.EndOfTick = DateTime.MinValue;
 
         }
-        public bool CanMoveTo(int NewX, int NewY, ICuskEntity CuskEntity)
+        public bool EntityCanMoveTo(int NewX, int NewY, ICuskEntity CuskEntity)
         {
             //Source and destination are the same
             if (NewX == CuskEntity.CurrentX && NewY == CuskEntity.CurrentY) return false;
@@ -84,6 +84,18 @@ namespace Cusk_Library.Engine
 
 
 
+        }
+
+        public void AddCuskEntity(ICuskEntity cuskEntity)
+        {
+            try
+            {
+                var result = cuskObjectDatabase.AddToDatabase(cuskEntity);
+            }
+            catch (Exception ex)
+            {
+                //Do something
+            }
         }
 
         //private void DoTick()

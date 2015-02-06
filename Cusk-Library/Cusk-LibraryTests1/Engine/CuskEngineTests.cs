@@ -32,7 +32,7 @@ namespace Cusk_Library.Engine.Tests
 
             cuskEngine.cuskObjectDatabase.AddToDatabase(mockNotBlocking.Object);
 
-            var result = cuskEngine.CanMoveTo(1, 1, mock.Object);
+            var result = cuskEngine.EntityCanMoveTo(1, 1, mock.Object);
             Assert.IsTrue(result);
         }
 
@@ -50,7 +50,7 @@ namespace Cusk_Library.Engine.Tests
             cuskEngine.cuskObjectDatabase.AddToDatabase(mockBlocking.Object);
 
 
-            var result = cuskEngine.CanMoveTo(1, 1, mock.Object);
+            var result = cuskEngine.EntityCanMoveTo(1, 1, mock.Object);
             Assert.IsFalse(result);
         }
 

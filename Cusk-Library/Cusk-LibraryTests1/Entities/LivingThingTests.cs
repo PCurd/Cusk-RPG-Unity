@@ -67,7 +67,7 @@ namespace Cusk_Library.Entities.Tests
         private static LivingThing CreateLivingThingThatCanMove()
         {
             var mock = new Mock<ICuskEngine>();
-            mock.Setup(m => m.CanMoveTo(1, 1, It.IsAny<ICuskEntity>())).Returns(true);
+            mock.Setup(m => m.EntityCanMoveTo(1, 1, It.IsAny<ICuskEntity>())).Returns(true);
 
             var thing = new LivingThing(1, 1, 1, 1, 1, 1, 1, mock.Object);
             return thing;
@@ -76,7 +76,7 @@ namespace Cusk_Library.Entities.Tests
         private static LivingThing CreateLivingThingThatCanMoveAnywhere()
         {
             var mock = new Mock<ICuskEngine>();
-            mock.Setup(m => m.CanMoveTo(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<ICuskEntity>())).Returns(true);
+            mock.Setup(m => m.EntityCanMoveTo(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<ICuskEntity>())).Returns(true);
 
             var thing = new LivingThing(1, 1, 1, 1, 1, 1, 1, mock.Object);
             return thing;
@@ -94,7 +94,7 @@ namespace Cusk_Library.Entities.Tests
         public void MoveTo_Returns_False_When_Object_Is_Blocked()
         {
             var mock = new Mock<ICuskEngine>();
-            mock.Setup(m => m.CanMoveTo(1, 1, It.IsAny<ICuskEntity>())).Returns(false);
+            mock.Setup(m => m.EntityCanMoveTo(1, 1, It.IsAny<ICuskEntity>())).Returns(false);
 
             var thing = new LivingThing(1, 1, 1, 1, 1, 1, 1, mock.Object);
             var result = thing.MoveTo(1, 1);
