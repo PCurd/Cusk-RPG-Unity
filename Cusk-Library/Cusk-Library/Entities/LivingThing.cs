@@ -67,6 +67,7 @@ namespace Cusk_Library.Entities
             else return false;
         }
 
+        //**RMOVE Unnecessary function added for testing
         public void DoMoves()
         {
             MoveTo(CurrentX + 1, CurrentY);
