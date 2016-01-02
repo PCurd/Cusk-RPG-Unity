@@ -39,7 +39,7 @@ public class GameWorldController : MonoBehaviour
             {
                 GameObject tile = null;
                 int pos = (int)(y * Size.x + x);
-                if (pos > FloorLayout.Length || pos < 0)
+                if (pos > FloorLayout.Length || pos < 0 || FloorLayout.Length==0)
                 {
                     tile = Ground[0]; // Black space
                 }
@@ -47,9 +47,11 @@ public class GameWorldController : MonoBehaviour
                 {
                     tile = Ground[FloorLayout[pos]]; 
                 }
-                
 
-                Instantiate(tile, new Vector3(x, y, 0f), Quaternion.identity);
+                var newtile = Instantiate(tile, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
+
+                newtile.transform.SetParent(this.transform, true);
+
             }
         }
         
