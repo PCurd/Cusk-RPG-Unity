@@ -8,7 +8,17 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		world.CreateWorld();
+        string text = null;
+		try {
+			text = System.IO.File.ReadAllText("map");
+		}
+		catch (System.IO.FileNotFoundException ex)
+		{
+            Debug.LogException(ex);
+		}
+        
+       
+        world.CreateWorld(text);
 		
 	}
 	
